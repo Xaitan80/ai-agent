@@ -16,23 +16,24 @@ client = genai.Client(api_key=api_key)
 
 
 def main():
+    verbose = False
+    
+    if "--verbose" in sys.argv:
+        verbose = True
+        sys.argv.remove("--verbose")
+
     if len(sys.argv) < 2:
         print("No input provided.")
         sys.exit(1)
     user_input = sys.argv[1]
-    verbose = False
-    if "--verbose" in sys.argv:
-        verbose = True
-        sys.argv.remove("--verbose")
     response = client.models.generate_content(
     model='gemini-2.0-flash-001', contents=user_input
 )
     if verbose == True:
     
-     
-        print("Prompt tokens:", response.usage_metadata.prompt_token_count)
-        print("Response tokens:", response.usage_metadata.candidates_token_count)
-        print(response.text)
+        print(f"User prompt: {user_input}")
+        print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
+        print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
     else:
         print(response.text)
     
