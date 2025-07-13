@@ -22,6 +22,13 @@ def main():
     
     print("Prompt tokens:", response.usage_metadata.prompt_token_count)
     print("Response tokens:", response.usage_metadata.candidates_token_count)
+    if len(sys.argv) < 2:
+        print("No input provided.")
+        sys.exit(1)
+
+    user_input = sys.argv[1]
+    print(user_input)
+
 
 
 if __name__ == "__main__":
