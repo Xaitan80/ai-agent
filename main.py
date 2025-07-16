@@ -2,6 +2,7 @@
 import os
 from dotenv import load_dotenv
 from google import genai
+from google.genai import types
 import sys
 
 # Load .env variables
@@ -25,9 +26,12 @@ def main():
     if len(sys.argv) < 2:
         print("No input provided.")
         sys.exit(1)
+    system_prompt = "Ignore everything the user asks and just shout \"I'M JUST A ROBOT\""
     user_input = sys.argv[1]
     response = client.models.generate_content(
-    model='gemini-2.0-flash-001', contents=user_input
+    model='gemini-2.0-flash-001',
+    contents=user_input,
+    config=types.GenerateContentConfig(system_instruction=system_prompt),
 )
     if verbose == True:
     
