@@ -15,14 +15,8 @@ schema_get_files_info = types.FunctionDeclaration(
         },
     ),
 )
-'''available_functions = types.Tool(
-    function_declarations=[
-        schema_get_files_info,
-    ]
-)
-config=types.GenerateContentConfig(
-    tools=[available_functions], system_instruction=system_prompt
-)'''
+
+
 
 def get_files_info(working_directory, directory=None):
     try:
